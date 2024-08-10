@@ -1,96 +1,124 @@
-body{
-    padding: 0;
-    margin: 0;
-    background-color: #fcba03;
+:root {
+  --bg-color: #fcba03;
+  --clock-bg: rgba(255, 255, 255, 0.06);
+  --border-color: rgba(255, 255, 255, 0.1);
+  --hour-color: #44AF69;
+  --minute-color: #ffffff;
+  --second-color: rgb(255, 0, 0);
+  --button-color: #F8333C;
+  --button-hover: #b31c24;
 }
-#clock_container{
-    height: 320px;
-    width: 320px;
-    background-color: rgba(255,255,255,0.06);
-    position: absolute;
-    margin: auto;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    background-image: url("clock.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    backdrop-filter: blur(20px);
-    border-radius: 50%;
-    border: 2px solid rgba(255,255,255,0.1);
-    box-shadow: 10px 10px 35px rgba(0,0,0,0.25);
+
+body {
+  padding: 0;
+  margin: 0;
+  background-color: var(--bg-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
 }
-#hour_hand{
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 320px;
+}
+
+#clock_container {
+  height: 320px;
+  width: 320px;
+  background-color: var(--clock-bg);
+  background-image: url("clock.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  backdrop-filter: blur(20px);
+  border-radius: 50%;
+  border: 2px solid var(--border-color);
+  box-shadow: 10px 10px 35px rgba(0, 0, 0, 0.25);
+  position: relative;
+}
+
+#hour_hand, #minute_hand, #second_hand {
+  position: absolute;
+  left: 50%;
+  transform-origin: bottom center;
+  border-radius: 5px;
+  transition: transform 0.5s cubic-bezier(0.4, 2.08, 0.55, 0.44);
+}
+
+#hour_hand {
+  height: 60px;
+  width: 10px;
+  bottom: 50%;
+  margin-left: -5px;
+  background-color: var(--hour-color);
+}
+
+#minute_hand {
+  height: 80px;
+  width: 5px;
+  bottom: 50%;
+  margin-left: -2.5px;
+  background-color: var(--minute-color);
+}
+
+#second_hand {
+  height: 90px;
+  width: 3px;
+  bottom: 50%;
+  margin-left: -1.5px;
+  background-color: var(--second-color);
+}
+
+#pause {
+  border: none;
+  background-color: var(--button-color);
+  font-size: 1rem;
+  font-family: monospace;
+  border-radius: 5px;
+  color: white;
+  width: 100%;
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+}
+
+#pause:hover {
+  background-color: var(--button-hover);
+}
+
+#bob {
+  background-color: white;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+}
+
+@media (max-width: 480px) {
+  #clock_container {
+    height: 240px;
+    width: 240px;
+  }
+
+  #hour_hand {
+    height: 45px;
+  }
+
+  #minute_hand {
     height: 60px;
-    width: 10px;
-    top: 100px;
-    position: absolute;
-    background-color: #44AF69;
-    backdrop-filter: blur(20px);
-    margin: auto;
-    left: 0;
-    right: 0;
-    border-radius: 5px;
-    transform-origin: bottom;
-}
-#minute_hand{
-    height: 80px;
-    width: 5px;
-    top: 80px;
-    position: absolute;
-    background-color: #ffffff;
-    backdrop-filter: blur(20px);
-    margin: auto;
-    left: 0;
-    right: 0;
-    border-radius: 5px;
-    transform-origin: bottom;
-}
-#second_hand{
-    height: 90px;
-    width: 3px;
-    top: 70px;
-    position: absolute;
-    background-color: rgb(255, 0, 0);
-    backdrop-filter: blur(20px);
-    margin: auto;
-    left: 0;
-    right: 0;
-    border-radius: 5px;
-    transform-origin: bottom;
-}
+  }
 
-#pause{
-    border: none;
-    background-color: #F8333C;
-    font-size: 1rem;
-    font-family: monospace;
-    border-radius: 5px;
-    color: white;
-    position: absolute;
-    width: 75px;
-    margin: auto;
-    left: 0;
-    right: 0;
-    top: 400px;
-}
-    
-
-#pause:hover{
-    background-color: #b31c24;
-}
-
-
-#bob{
-    background-color: white;
-    height: 16px;
-    width: 16px;
-    border-radius: 50%;
-    position: absolute;
-    margin: auto;
-    left: 0;
-    right: 0;
-    top: 152px;
-    z-index: 5;
+  #second_hand {
+    height: 70px;
+  }
 }
